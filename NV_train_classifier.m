@@ -24,9 +24,11 @@ Patient{13} = '25_003';
 Patient{14} = '25_004';
 Patient{15} = '25_005';
 
-data_path = 'C:\Users\pkaroly\Dropbox\NV_MATLAB\LL-Prediction\TrainingData\';
+% data_path = 'C:\Users\pkaroly\Dropbox\NV_MATLAB\LL-Prediction\TrainingData\';
+data_path = 'G:\Bayesian LL\TrainingData_v1_raw\';
 
-for iPt = [3 8 9 10 11 13 15]
+% for iPt = [3 8 9 10 11 13 15]
+for iPt = 1
 
 %% ALGORITHM PARAMETERS
 
@@ -37,7 +39,7 @@ averageSize = 60;       % time in seconds to take average over
 % log regression
 lambda = 0.5;   % regularization param
 MaxIter = 100; % grad descent iterations
-featureNormalize = 0;  % pre normalize the features? zero mean unit var
+featureNormalize = 1;  % pre normalize the features? zero mean unit var
 
 patient = Patient{iPt};
 % load data

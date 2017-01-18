@@ -2,7 +2,7 @@ clear
 close all
 clc
 
-norm01 = 1;
+norm01 = 0;
 
 % Patients
 Patient{1} = '23_002';
@@ -27,7 +27,8 @@ Patient{15} = '25_005';
 mkdir('TrainingData');
 data_path = 'TrainingData/';
 
-for iPt = [3 8 9 10 11 13 15]
+% for iPt = [3 8 9 10 11 13 15]
+for iPt = 6
     
     save_path = [data_path Patient{iPt}];
     

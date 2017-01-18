@@ -5,7 +5,7 @@ clear
 close all
 clc
 
-iPt = 15;
+iPt = 6;
 
 % iCh = [6 10 16];  %3 
 % iCh = [4 8 16];    %8
@@ -35,7 +35,7 @@ Patient{14} = '25_004';
 Patient{15} = '25_005';
 
 % data_path = 'C:\Users\pkaroly\Dropbox\NV_MATLAB\LL-Prediction\';
-data_path = 'C:\Users\pkaro\Dropbox\NV_MATLAB\LL-Prediction\TrainingData_v1\';
+data_path = 'G:\Bayesian LL\TrainingData_v1_raw\';
 
 %% ALGORITHM PARAMETERS
 
