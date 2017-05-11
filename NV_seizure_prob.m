@@ -123,7 +123,7 @@ for iPt = 6
         SzPDF = (M2 - M1) * (SzPDF - min(SzPDF)) ./ (max(SzPDF) - min(SzPDF)) + M1;
     end
     
-    save([save_path 'SzProb'],'SzProb','SzPDF','trial_t0')
+%     save([save_path 'SzProb'],'SzProb','SzPDF','trial_t0')
     
     %% Now pre-compute all the probablity updates
     save_path = [data_path Patient{iPt} 'SzProbAll/'];
@@ -157,9 +157,9 @@ for iPt = 6
         % save according to the number of seizures included in the pdf
         ID = floor(SzTimes(length(Seizures1)+iSz)/1e6);  % use start second of seizure as an identifier
         SeizureID(iSz) = ID;
-        save([save_path 'SzProb_' num2str(ID)],'SzProb','SzPDF')
+%         save([save_path 'SzProb_' num2str(ID)],'SzProb','SzPDF')
     end
-    save([save_path 'SzProb_ID'],'SeizureID');
+%     save([save_path 'SzProb_ID'],'SeizureID');
     
     fprintf('all training seizures: %d\nall test seizures: %d\nbase-rate: %.2f\n',S,length(Seizures2),100 * length(Seizures2) / ((max(SzDay) - 200) * 24))
     

@@ -36,7 +36,6 @@ cmap = C2;
 A = getCustomAxesPos(3,3,0.1,0.1);
 A = A';
 A = A(:);
-delete(A(8:9));
 
 font = 'arial';
 fsize = 8;
@@ -80,18 +79,50 @@ for iPt = 1:15
 %         'outliersize',6,'symbol','k.');
     hold on;
     line([1 80],[16 16],'color','r','linewidth',1.5)
+    text(5,75,['S' num2str(iPt)],'fontname',font,'fontsize',fsize,'fontweight','bold')
     
-    set(gca,'box','off','xtick',[],'ytick',[],'fontname',font,'fontsize',fsize);
+    set(gca,'box','off','xlim',[1 80],'xtick',[],'ytick',[],'fontname',font,'fontsize',fsize);
+    if ind == 7
+        set(gca,'ytick',[1 40 80]);
+        ylabel('Feature Rank', 'fontname',font,'fontsize',fsize)
+    end
     
-    temp = figure;
-    imagesc(chanCount); colormap(cmap);
-    set(gca,'visible','off');
-    set(temp,'paperunits','centimeters','paperposition',[0 0 2 2]);
-    print(temp,[curPt 'Ch'],'-dpng');
-    close(temp);
+    if ind == 8
+        xlabel('Feature Index (sorted by median rank)', 'fontname',font,'fontsize',fsize)
+    end
+%     temp = figure;
+%     imagesc(chanCount); colormap(cmap);
+%     set(gca,'visible','off');
+%     set(temp,'paperunits','centimeters','paperposition',[0 0 2 2]);
+%     print(temp,[curPt 'Ch'],'-dpng');
+%     close(temp);
     
     ind = ind + 1;
 end
 
     set(gcf,'paperunits','centimeters','paperposition',[0 0 12 10]);
-    print(gcf,'featureStability','-dpng');
+    print(gcf,'featureStability','-dpng','-r300');
+    %%
+    
+ close all
+ figure;
+ featureName = {'8 - 16Hz', '16 - 32Hz', '32 - 64Hz', '64 - 128Hz','Line Length'};
+ 
+A = getCustomAxesPos(5,1,0,0.1);
+for ind = 1:5
+    axes(A(ind));
+    bar(topFeatureGroup(:,ind),'facecolor','k')
+    set(gca,'box','off','xtick',[],'yticklabel',[],'xlim',[0.5 9.5],'ylim',[0 160],...
+        'fontname',font,'fontsize',fsize)
+    text(4,140,featureName{ind}, 'fontname',font,'fontsize',fsize,'fontweight','bold');
+    if ind == 5
+        set(gca,'ytick',[0 80 160],'yticklabel',[0 80 160],'xtick',1:9,'xticklabel',[1,3,6,8,9,10,11,13,15])
+        xlabel('Subject', 'fontname',font,'fontsize',fsize);
+    end
+    if ind == 3
+        ylabel('N Times in Final Feature Set', 'fontname',font,'fontsize',fsize);
+    end
+end
+
+    set(gcf,'paperunits','centimeters','paperposition',[0 0 7 10]);
+    print(gcf,'featureRank','-dpng','-r300');
