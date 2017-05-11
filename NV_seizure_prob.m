@@ -27,8 +27,8 @@ Patient{15} = '25_005';
 mkdir('TrainingData');
 data_path = 'TrainingData/';
 
-% for iPt = [3 8 9 10 11 13 15]
-for iPt = 6
+for iPt = [1 3 6 8 9 10 11 13 15]
+% for iPt = 6
     
     save_path = [data_path Patient{iPt}];
     
@@ -59,6 +59,7 @@ for iPt = 6
     % seizure TOD
     SzCirc = SzCirc(:,4);
     
+    
     %% shift the daylight savings TOD for each possible year
     
     % 2009/2010
@@ -79,6 +80,9 @@ for iPt = 6
     % 2012/2012
     DaylightSavingsON = SzYear == 2012 & ( SzMon > 10 | (SzMon == 10 & SzDate > 7) );  % 2010 after Oct 7th
     SzCirc(DaylightSavingsON) = SzCirc(DaylightSavingsON) + 1;   % CLOCK FORWARDS
+    
+    % adjust back to 24 hour time
+    SzCirc = mod(SzCirc,24);
     %%
     
     % remove type threes
